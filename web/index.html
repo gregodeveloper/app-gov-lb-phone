@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrK</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app" id="gov-app">
+        
+        <div id="screen-auth" class="screen active">
+            <div class="gov-header-top"></div>
+            
+            <div class="gov-header" style="border-top: none; justify-content: center;">
+                <span class="brand">Portal Gov.xp</span>
+            </div>
+            
+            <div class="auth-container">
+                <div class="gov-brand-login">
+                    <h2>Gov.xp</h2>
+                    <p id="auth-main-text">Identifique-se no gov.xp com:</p>
+                </div>
+                
+                <div class="auth-box">
+                    <label class="auth-label">👤 Número do Passaporte</label>
+                    
+                    <div class="input-group">
+                        <input type="text" id="user-id" readonly value="...">
+                    </div>
+                    
+                    <div id="login-fields" style="display:none;">
+                        <div class="input-group">
+                            <input type="password" id="user-pass" placeholder="Digite sua senha">
+                        </div>
+                        <button id="btn-login" class="btn-gov">Entrar com gov.xp</button>
+                    </div>
+                    
+                    <div id="register-fields" style="display:none;">
+                        <div class="input-group">
+                            <input type="password" id="reg-pass" placeholder="Crie sua senha">
+                        </div>
+                        <div class="input-group">
+                            <input type="password" id="reg-confirm" placeholder="Confirme a senha">
+                        </div>
+                        <button id="btn-register" class="btn-gov">Cadastrar Senha</button>
+                    </div>
+                    
+                    <div id="auth-error" class="error-msg"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="screen-dash" class="screen">
+            <div class="gov-header">
+                <span class="brand">Gov.xp</span>
+                <button id="btn-logout" class="btn-logout-gov">Sair</button>
+            </div>
+            
+            <div class="user-greeting">
+                <p>Bem-vindo(a),</p>
+                <h3 id="welcome-name">...</h3>
+                <div class="cpf-badge">ID: <span id="welcome-id">0</span></div>
+            </div>
+            
+            <div class="services-container">
+                <h4>Serviços Digitais</h4>
+                <div class="menu-grid">
+                    <div class="menu-item" data-target="screen-vehicles">
+                        <div class="icon-circle bg-blue">🚗</div>
+                        <span>Veículos</span>
+                    </div>
+                    <div class="menu-item" data-target="screen-properties">
+                        <div class="icon-circle bg-green">🏠</div>
+                        <span>Imóveis</span>
+                    </div>
+                    <div class="menu-item" data-target="screen-documents">
+                        <div class="icon-circle bg-yellow">📄</div>
+                        <span>Documentos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="screen-vehicles" class="screen screen-sub">
+            <div class="gov-header">
+                <button class="btn-back">‹ Voltar</button>
+                <span class="brand">Meus Veículos</span>
+            </div>
+            <div class="content-list" id="vehicle-list">
+                </div>
+        </div>
+
+        <div id="screen-properties" class="screen screen-sub">
+            <div class="gov-header">
+                <button class="btn-back">‹ Voltar</button>
+                <span class="brand">Meus Imóveis</span>
+            </div>
+            <div class="content-list" id="property-list">
+                </div>
+        </div>
+
+        <div id="screen-documents" class="screen screen-sub">
+            <div class="gov-header">
+                <button class="btn-back">‹ Voltar</button>
+                <span class="brand">Documentos</span>
+            </div>
+            <div class="content-list" id="document-list">
+                
+                <div class="doc-card rg-card">
+                    <div class="rg-header">
+                        <div>REPÚBLICA FEDERATIVA DO BRASIL</div>
+                        <div style="font-size: 0.8rem; font-weight: 700;">CARTEIRA DE IDENTIDADE NACIONAL</div>
+                    </div>
+                    <div class="rg-body">
+                        <div class="rg-photo">
+                            <img src="https://i.pinimg.com/736x/0f/68/94/0f6894e539589a50809e45833c8bb6c4.jpg" alt="Foto">
+                        </div>
+                        <div class="rg-details">
+                            <div class="rg-field">
+                                <span>NOME COMPLETO</span>
+                                <strong class="doc-name">...</strong>
+                            </div>
+                            <div class="rg-field">
+                                <span>PASSAPORTE / CPF</span>
+                                <strong class="doc-id">...</strong>
+                            </div>
+                            <div class="rg-field">
+                                <span>NATURALIDADE</span>
+                                <strong>Mogi, SP</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rg-footer">
+                        <div class="rg-signature doc-name">...</div>
+                    </div>
+                </div>
+
+                <div id="anac-card" class="doc-card cnh-card" style="display: none; border-color: #01579b; background: #e1f5fe;">
+                    <div class="doc-badge-type" style="background: #01579b;">ANAC</div>
+                    <div class="cnh-header" style="background: #01579b;">
+                        <img src="https://i.imgur.com/4z8I3Vn.png" height="35" alt="Brasão">
+                        <div>AGÊNCIA NACIONAL DE AVIAÇÃO CIVIL<br>LICENÇA DE PILOTO PRIVADO</div>
+                    </div>
+                    <div class="cnh-body">
+                        <div class="cnh-photo" style="border-color: #01579b;">
+                            <img src="https://i.pinimg.com/736x/0f/68/94/0f6894e539589a50809e45833c8bb6c4.jpg" alt="Foto Piloto">
+                        </div>
+                        <div class="cnh-details">
+                            <div class="cnh-field">
+                                <span>NOME DO AERONAUTA</span>
+                                <strong class="doc-name">...</strong>
+                            </div>
+                            <div class="cnh-field">
+                                <span>CÓDIGO ANAC</span>
+                                <strong id="anac-id-text">...</strong>
+                            </div>
+                            <div class="cnh-row">
+                                <div class="cnh-field">
+                                    <span>HORAS</span>
+                                    <strong id="anac-hours-text">...</strong>
+                                </div>
+                                <div class="cnh-field">
+                                    <span>REPUTAÇÃO</span>
+                                    <strong id="anac-rep-text">...</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cnh-footer" style="background: #01579b;">LICENÇA DE VOO DIGITAL</div>
+                </div>
+
+                <div class="doc-card cnh-card" style="display: none;">
+                    <div class="doc-badge-type">CNH</div>
+                    <div class="cnh-header">
+                        <img src="https://i.imgur.com/4z8I3Vn.png" alt="Brasão">
+                        <div>REPÚBLICA FEDERATIVA DO BRASIL<br>MINISTÉRIO DA INFRAESTRUTURA<br>CONTRAN - DENATRAN</div>
+                    </div>
+                    <div class="cnh-body">
+                        <div class="cnh-photo">
+                            <img src="https://i.pinimg.com/736x/0f/68/94/0f6894e539589a50809e45833c8bb6c4.jpg" alt="Foto">
+                        </div>
+                        <div class="cnh-details">
+                            <div class="cnh-field">
+                                <span>NOME</span>
+                                <strong class="doc-name">...</strong>
+                            </div>
+                            <div class="cnh-row">
+                                <div class="cnh-field">
+                                    <span>Nº REGISTRO</span>
+                                    <strong>11223344550</strong>
+                                </div>
+                                <div class="cnh-field">
+                                    <span>VALIDADE</span>
+                                    <strong>10/12/2028</strong>
+                                </div>
+                                <div class="cnh-field">
+                                    <span>CAT.</span>
+                                    <strong>AB</strong>
+                                </div>
+                            </div>
+                            <div class="cnh-row">
+                                <div class="cnh-field">
+                                    <span>CPF</span>
+                                    <strong class="doc-id">...</strong>
+                                </div>
+                                <div class="cnh-field">
+                                    <span>OBS.</span>
+                                    <strong>EAR</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cnh-footer">Carteira Nacional de Habilitação</div>
+                </div>
+
+                <div class="doc-card funcional-card" style="display: none;">
+                    <div class="doc-badge-type">FUNCIONAL</div>
+                    <div class="funcional-header">
+                        <div>ESTADO DE SÃO PAULO<br>POLÍCIA CIVIL<br>DEPARTAMENTO DE IDENTIFICAÇÃO</div>
+                    </div>
+                    <div class="funcional-body">
+                        <div class="funcional-photo">
+                            <img src="https://i.pinimg.com/736x/0f/68/94/0f6894e539589a50809e45833c8bb6c4.jpg" alt="Foto">
+                        </div>
+                        <div class="funcional-details">
+                            <div class="funcional-field">
+                                <span>NOME COMPLETO</span>
+                                <strong class="doc-name">...</strong>
+                            </div>
+                            <div class="funcional-row">
+                                <div class="funcional-field">
+                                    <span>CARGO</span>
+                                    <strong style="color: #b38f00;">INSPETOR CHEFE</strong>
+                                </div>
+                                <div class="funcional-field">
+                                    <span>MATRÍCULA</span>
+                                    <strong>PC-10255</strong>
+                                </div>
+                            </div>
+                            <div class="funcional-row">
+                                <div class="funcional-field">
+                                    <span>PASSAPORTE</span>
+                                    <strong class="doc-id">...</strong>
+                                </div>
+                                <div class="funcional-field">
+                                    <span>STATUS</span>
+                                    <strong style="color: #2e7d32;">ATIVO</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="funcional-footer">Uso Obrigatório em Serviço</div>
+                </div>
+
+                <div class="doc-card porte-card" style="display: none;">
+                    <div class="doc-badge-type">PORTE</div>
+                    <div class="porte-header">
+                        <div>SISTEMA NACIONAL DE ARMAS - SINARM<br>PORTE DE ARMA DE FOGO</div>
+                    </div>
+                    <div class="porte-body">
+                        <div class="porte-field">
+                            <span>PROPRIETÁRIO</span>
+                            <strong class="doc-name">...</strong>
+                        </div>
+                        <div class="porte-field">
+                            <span>PASSAPORTE / CPF</span>
+                            <strong class="doc-id">...</strong>
+                        </div>
+                        <div class="porte-row">
+                            <div class="porte-field">
+                                <span>ARMA</span>
+                                <strong>Pistola 9mm</strong>
+                            </div>
+                            <div class="porte-field">
+                                <span>REGISTRO</span>
+                                <strong>SINARM 2026</strong>
+                            </div>
+                        </div>
+                        <div class="porte-field">
+                            <span>Nº SÉRIE</span>
+                            <strong>GLOCK-998877</strong>
+                        </div>
+                        <div class="porte-field">
+                            <span>VALIDADE</span>
+                            <strong>10/12/2028</strong>
+                        </div>
+                    </div>
+                    <div class="porte-status">PORTE AUTORIZADO</div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="loading-overlay" class="crlv-overlay" style="display:none; background: rgba(255,255,255,0.95);">
+            <div class="loader-content" style="text-align: center;">
+                <div class="spinner"></div>
+                <h3 id="loader-text" style="color: var(--gov-blue); margin-top: 20px;">Processando solicitação...</h3>
+                <p style="color: #666; font-size: 0.9rem;">Aguardando aprovação do sistema.</p>
+            </div>
+        </div>
+
+        <div class="crlv-overlay" id="crlv-viewer" style="display:none;">
+            <div class="crlv-container">
+                <button class="btn-close-overlay">X</button>
+                <div class="crlv-header">
+                    <div>MINISTÉRIO DA INFRAESTRUTURA<br>CONTRAN - DENATRAN</div>
+                    <img src="https://i.imgur.com/4z8I3Vn.png" height="40" alt="Brasão">
+                </div>
+                <div class="crlv-title">CERTIFICADO DE REGISTRO E LICENCIAMENTO DE VEÍCULO</div>
+                <div class="crlv-body">
+                    <div class="crlv-field-id">
+                        <span>CÓD. SEGURANÇA CLA</span>
+                        <strong>12345678912</strong>
+                    </div>
+                    <div class="crlv-grid">
+                        <div class="crlv-f">
+                            <span>PLACA</span>
+                            <strong id="crlv-plate">...</strong>
+                        </div>
+                        <div class="crlv-f">
+                            <span>RENAVAM</span>
+                            <strong id="crlv-renavam">00213456789</strong>
+                        </div>
+                        <div class="crlv-f crlv-full">
+                            <span>MARCA/MODELO</span>
+                            <strong id="crlv-model">...</strong>
+                        </div>
+                        <div class="crlv-f crlv-full">
+                            <span>PROPRIETÁRIO</span>
+                            <strong class="doc-name">...</strong>
+                        </div>
+                    </div>
+                    <div class="crlv-status">LICENCIAMENTO EM DIA</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="crlv-overlay" id="escritura-viewer" style="display:none;">
+            <div class="crlv-container" style="border-color: #8d6e63; background: #efebe9;">
+                <button class="btn-close-overlay" style="background: rgba(141, 110, 99, 0.8);">X</button>
+                <div class="crlv-header" style="color: #5d4037; border-bottom-color: #d7ccc8;">
+                    <div>REPÚBLICA FEDERATIVA DO BRASIL<br>REGISTRO GERAL DE IMÓVEIS<br>CARTÓRIO DO 1º OFÍCIO</div>
+                    <span style="font-size: 2rem;">🏛️</span>
+                </div>
+                <div class="crlv-title" style="color: #5d4037;">CERTIDÃO DE REGISTRO DE IMÓVEL (MATRÍCULA)</div>
+                <div class="crlv-body">
+                    <div class="crlv-field-id" style="border-color: #bcaaa4; background: #fff;">
+                        <span style="color: #5d4037;">MATRÍCULA Nº</span>
+                        <strong style="color: #3e2723;">REG-8847291-BR</strong>
+                    </div>
+                    <div class="crlv-grid">
+                        <div class="crlv-f crlv-full" style="border-color: #bcaaa4; background: rgba(255,255,255,0.7);">
+                            <span style="color: #5d4037;">PROPRIETÁRIO ATUAL</span>
+                            <strong class="doc-name" style="color: #3e2723;">...</strong>
+                        </div>
+                        <div class="crlv-f" style="border-color: #bcaaa4; background: rgba(255,255,255,0.7);">
+                            <span style="color: #5d4037;">TIPO DO IMÓVEL</span>
+                            <strong id="escritura-type" style="color: #3e2723;">...</strong>
+                        </div>
+                        <div class="crlv-f crlv-full" style="border-color: #bcaaa4; background: rgba(255,255,255,0.7);">
+                            <span style="color: #5d4037;">ENDEREÇO DO IMÓVEL (RUA / LOTE)</span>
+                            <strong id="escritura-name" style="color: #3e2723;">...</strong>
+                        </div>
+                        <div class="crlv-f" style="border-color: #bcaaa4; background: rgba(255,255,255,0.7);">
+                            <span style="color: #5d4037;">VALOR VENAL</span>
+                            <strong id="escritura-value" style="color: #3e2723;">...</strong>
+                        </div>
+                    </div>
+                    <div class="crlv-status" id="escritura-status" style="background: #8d6e63; margin-top: 15px; color: #fff;">SITUAÇÃO REGULAR</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="crlv-overlay" id="bo-viewer" style="display:none;">
+            <div class="crlv-container" style="border-color: #37474f; background: #eceff1;">
+                <button class="btn-close-overlay" style="background: #37474f;">X</button>
+                <div class="crlv-header" style="color: #1a237e; border-bottom-color: #cfd8dc;">
+                    <div>SECRETARIA DE SEGURANÇA PÚBLICA<br>POLÍCIA CIVIL DO ESTADO<br>DELEGACIA ELETRÔNICA</div>
+                    <span style="font-size: 2rem;">🚓</span>
+                </div>
+                <div class="crlv-title" style="color: #b71c1c;">BOLETIM DE OCORRÊNCIA - ROUBO/FURTO</div>
+                <div class="crlv-body">
+                    <div class="crlv-field-id" style="border-color: #90a4ae; background: #fff;">
+                        <span style="color: #37474f;">NÚMERO DO PROTOCOLO B.O.</span>
+                        <strong style="color: #b71c1c;">BO-2026/09981</strong>
+                    </div>
+                    <div class="crlv-grid">
+                        <div class="crlv-f" style="background: #fff; border-color: #90a4ae;">
+                            <span style="color: #37474f;">DATA DO REGISTRO</span>
+                            <strong id="bo-date" style="color: #111;">...</strong>
+                        </div>
+                        <div class="crlv-f" style="background: #fff; border-color: #90a4ae;">
+                            <span style="color: #37474f;">PLACA DO VEÍCULO</span>
+                            <strong id="bo-plate" style="color: #111;">...</strong>
+                        </div>
+                        <div class="crlv-f crlv-full" style="background: #fff; border-color: #90a4ae;">
+                            <span style="color: #37474f;">COMUNICANTE / VÍTIMA</span>
+                            <strong class="doc-name" style="color: #111;">...</strong>
+                        </div>
+                    </div>
+                    <div class="crlv-status" style="background: #b71c1c; margin-top: 15px; color: #fff;">VEÍCULO COM RESTRIÇÃO ATIVA (ROUBO)</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
