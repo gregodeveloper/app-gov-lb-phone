@@ -20,7 +20,7 @@ Este script requer os seguintes recursos para funcionar corretamente:
 
 1.  **[LB-Phone](https://github.com/lb-phone)** (Interface base).
 2.  **vRP** (Framework do servidor).
-3.  **[GrK Radar](LINK_DO_REPOSITORIO_AQUI)** (Necessário para a leitura automática de placas com queixa).
+3.  **[GrK Radar](https://github.com/gregodeveloper/radar-grk)** (Necessário para a leitura automática de placas com queixa).
 
 ## 🚀 Instalação
 
