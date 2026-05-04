@@ -18,7 +18,7 @@ O **Gov.xp** é um ecossistema governamental completo desenvolvido para o framew
 
 Este script requer os seguintes recursos para funcionar corretamente:
 
-1.  **[LB-Phone](https://github.com/lb-phone)** (Interface base).
+1.  **[LB-Phone]([https://github.com/lb-phone](https://lbscripts.com/package/phone))** (Interface base).
 2.  **vRP** (Framework do servidor).
 3.  **[GrK Radar](https://github.com/gregodeveloper/radar-grk)** (Necessário para a leitura automática de placas com queixa).
 
